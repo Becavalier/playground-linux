@@ -90,6 +90,7 @@ static void __exit first_lkm_exit(void) {    // __exit 编译器属性，为卸�
 }
 
 // 宏，把上述函数挂载到 GCC 的编译工具链上；
+// <linux/init.h> 中定义了这两个宏；	
 module_init(first_lkm_init);
 module_exit(first_lkm_exit);
 
@@ -102,6 +103,7 @@ MODULE_LICENSE("GPL");  // 不可随意修改，内核使用的标准协议，�
 /*
 	Linux内核相关命令：
 
-	-lsmod 列出当前内核已经加载的LKM；
+	lsmod 列出当前内核已经加载的LKM；
+	
 
 */
