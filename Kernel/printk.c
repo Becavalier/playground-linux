@@ -19,14 +19,30 @@ static int __init first_lkm_init(void) {   // static 表示文件内部函数；
 	int n = 0x1937;
 
 	// printk 在内核中运行的向控制台输出显示的函数；
-	printk(KERN_INFO "Hi, I am YHSPY at address 0x%p stack 0x%p.\n", first_lkm_init, &n);
+	printk(KERN_INFO "Hi, I am llaolao at address 0x%p\n",
+	    llaolao_init);
 
+    printk(KERN_INFO "symbol: 0x%pF\n",
+	    llaolao_init);
+
+    printk(KERN_INFO "stack: 0x%p\n",
+        &n);
+    
 	return 0;
 }
 
 static void __exit first_lkm_exit(void) {    // __exit 编译器属性，为卸载函数；
 
 	printk("Exiting from 0x%p ... Bye, YHSPY friends.\n", first_lkm_exit);
+
+	printk(KERN_EMERG "Testing message with different severity level\n");
+    printk(KERN_ALERT "Testing message with different severity level\n");
+    printk(KERN_CRIT "Testing message with different severity level\n");
+    printk(KERN_ERR "Testing message with different severity level\n");
+    printk(KERN_WARNING "Testing message with different severity level\n");
+    printk(KERN_NOTICE "Testing message with different severity level\n");
+    printk(KERN_INFO "Testing message with different severity level\n");
+    printk(KERN_DEBUG "Testing message with different severity level\n");
 
 }
 
