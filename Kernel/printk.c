@@ -14,7 +14,7 @@
 
 
 
-static int __init first_lkm_init(void) {   // static 表示文件内部函数；__init 编译器属性，为初始化函数；
+static int __init llaolao_init(void) {   // static 表示文件内部函数；__init 编译器属性，为初始化函数；
 
 	int n = 0x1937;
 
@@ -27,13 +27,16 @@ static int __init first_lkm_init(void) {   // static 表示文件内部函数；
 
     printk(KERN_INFO "stack: 0x%p\n",
         &n);
+
+    printk(KERN_INFO "first 16 bytes: 0x%p\n",
+        llaolao_init+0x10);
     
 	return 0;
 }
 
-static void __exit first_lkm_exit(void) {    // __exit 编译器属性，为卸载函数；
+static void __exit llaolao_exit(void) {    // __exit 编译器属性，为卸载函数；
 
-	printk("Exiting from 0x%p ... Bye, YHSPY friends.\n", first_lkm_exit);
+	printk("Exiting from 0x%p ... Bye, YHSPY friends.\n", llaolao_exit);
 
 	printk(KERN_EMERG "Testing message with different severity level\n");
     printk(KERN_ALERT "Testing message with different severity level\n");
@@ -48,8 +51,8 @@ static void __exit first_lkm_exit(void) {    // __exit 编译器属性，为卸�
 
 // 宏，把上述函数挂载到 GCC 的编译工具链上；
 // <linux/init.h> 中定义了这两个宏；	
-module_init(first_lkm_init);
-module_exit(first_lkm_exit);
+module_init(llaolao_init);
+module_exit(llaolao_exit);
 
 // 说明模块作者和版权信息的宏调用；
 MODULE_AUTHOR("YHSPY");
